@@ -133,7 +133,7 @@ The Playwright 3D tests ran on software WebGL (llvmpipe), which is slower than a
 ## 10. Known limitations and remaining work
 
 1. **Photography** is unreviewed stock (see §6). Commission and replace it before any client presentation of a real venue.
-2. **Business facts** (address, phone, social accounts, real hours) are placeholders by design. Fill `src/content/site.ts`, then set `NEXT_PUBLIC_MAP_EMBED_URL` for the map.
+2. **Business facts** (address, phone, social accounts, real hours) are placeholders by design. Fill `src/content/site.ts`. `NEXT_PUBLIC_MAP_EMBED_URL` is optional: set it to swap the drawn harbour map for a real map embed.
 3. **Bookings are demonstrations.** Connect a real system with `RESERVATION_WEBHOOK_URL`/`_SECRET` or a provider adapter (`src/lib/reservations/provider.ts`). Availability is simulated (`simulatedOccupancy`).
 4. **CSP allows inline scripts** (a static-rendering trade-off, documented in `docs/SECURITY.md` with the nonce migration path).
 5. **Rate limits are per instance** unless Upstash is configured.
