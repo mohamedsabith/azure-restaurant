@@ -9,6 +9,7 @@ import { openingHours, site } from '@/content/site';
 import { env } from '@/lib/env/server';
 import { breadcrumbJsonLd, faqJsonLd } from '@/lib/seo/jsonld';
 import { pageMetadata } from '@/lib/seo/metadata';
+import { HarbourMap } from '@/sections/shared/HarbourMap';
 import { PageHero } from '@/sections/shared/PageHero';
 
 export const metadata = pageMetadata('reservations');
@@ -164,24 +165,7 @@ export default function ReservationsPage() {
                   sandbox="allow-scripts allow-same-origin"
                 />
               ) : (
-                <div className="absolute inset-0 flex flex-col justify-between p-8">
-                  {/* Architectural hairline grid — a placeholder, not an invented map. */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 [background-image:linear-gradient(rgb(140_169_214/0.16)_1px,transparent_1px),linear-gradient(90deg,rgb(140_169_214/0.16)_1px,transparent_1px)] [background-size:48px_48px] opacity-50"
-                  />
-                  <p className="relative eyebrow text-bronze">Location</p>
-                  <div className="relative">
-                    <Icon name="info" className="mb-4 size-6 text-bronze" />
-                    <p className="font-display text-h3 text-forest">
-                      The map appears here once the address is public.
-                    </p>
-                    <p className="mt-3 max-w-sm text-small text-ink/85">
-                      Set <code className="text-bronze">NEXT_PUBLIC_MAP_EMBED_URL</code> to enable an embedded
-                      map.
-                    </p>
-                  </div>
-                </div>
+                <HarbourMap idPrefix="visit" />
               )}
             </div>
             <div data-reveal className="grid gap-8 sm:grid-cols-2">
