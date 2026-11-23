@@ -91,6 +91,6 @@ jobs:
       - run: npm ci
       - run: npm run audit:deps
       - if: github.event_name == 'pull_request'
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
