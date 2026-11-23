@@ -32,4 +32,4 @@ Validated at build (`src/lib/env/schema.ts`). Server-only modules import `server
 
 ## Supply chain
 
-`npm audit` reports 0 vulnerabilities (production and dev, 23 Nov 2026). CI runs `npm audit --omit=dev --audit-level=high`, GitHub Dependency Review on PRs, CodeQL (`security-extended`) weekly and on every push, and grouped Dependabot updates.
+`npm audit` reports 0 vulnerabilities (production and dev, 23 Nov 2026). CI runs `npm audit --omit=dev --audit-level=high`, GitHub Dependency Review on PRs, CodeQL (`security-extended`) weekly and on every push.

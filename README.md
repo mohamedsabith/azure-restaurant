@@ -88,7 +88,7 @@ The site is static except two small Route Handlers, the reservation Server Actio
 - **Vercel Hobby (recommended for this demo)** — import the repository; no configuration needed. Hobby is restricted to **non-commercial, personal use**, which suits a portfolio/demo but not a live restaurant.
 - **For a real (commercial) restaurant on a free tier** — Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`) or Netlify's free plan both run Next.js App Router; check each platform's current Next.js 16 support notes before switching.
 - After the first deploy set `NEXT_PUBLIC_SITE_URL` to the final domain, and optionally Upstash credentials for global rate limits.
-- GitHub Actions (`.github/workflows/ci.yml`) gates every push and PR on lint, format, types, unit tests, a production build, E2E + accessibility tests, a Lighthouse budget and a dependency audit; CodeQL and Dependabot handle security scanning and updates.
+- GitHub Actions (`.github/workflows/ci.yml`) gates every push and PR on lint, format, types, unit tests, a production build, E2E + accessibility tests, a Lighthouse budget and a dependency audit; CodeQL handles security scanning.
 
 ## Search and AI discoverability
 
