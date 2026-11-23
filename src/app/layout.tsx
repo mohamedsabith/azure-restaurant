@@ -45,8 +45,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     // expected to differ from the server HTML; this only silences <html>'s own attributes.
     <html lang="en-GB" className={`${cormorant.variable} ${manrope.variable}`} suppressHydrationWarning>
       <head>
-        {/* Tiny same-origin script that must run before first paint (decides whether
-            the opening sequence shows). Same-origin, so it satisfies script-src 'self'. */}
+        {/* Tiny same-origin script that must run before first paint and hydration: it
+            removes markup hosts inject into <head> (Netlify's promotional comment, which
+            would otherwise cause hydration error #418) and decides whether the opening
+            sequence shows. Same-origin, so it satisfies script-src 'self'. */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="/scripts/intro-gate.js" />
       </head>
