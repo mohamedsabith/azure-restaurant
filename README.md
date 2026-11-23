@@ -74,20 +74,21 @@ Validated with Zod at build time (`src/lib/env/schema.ts`); a misconfigured depl
 
 | Variable                              | Required                         | Purpose                                                                                                          |
 | ------------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`                | Recommended                      | Canonical origin. Falls back to the Vercel/Netlify production URL, then localhost                                |
+| `NEXT_PUBLIC_SITE_URL`                | No                               | Canonical origin. Falls back to the Vercel/Netlify production URL, then localhost                                |
 | `SITE_INDEXING`                       | No                               | `auto` (default) indexes production only; previews get `noindex` headers and a blocking robots.txt               |
 | `UPSTASH_REDIS_REST_URL` / `_TOKEN`   | No                               | Shared rate limiting across serverless instances (Upstash free tier). Without them limits are per instance       |
 | `RESERVATION_WEBHOOK_URL` / `_SECRET` | No                               | Forward booking requests (HMAC-SHA256 signed) to a real system. Without them the form runs in labelled demo mode |
-| `NEXT_PUBLIC_MAP_EMBED_URL`           | No                               | Map embed once the address is public; its origin is added to CSP `frame-src`                                     |
+| `NEXT_PUBLIC_MAP_EMBED_URL`           | No                               | Real map embed on the Reservations page (replaces the drawn harbour map); its origin is added to CSP `frame-src` |
 | `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY`  | Multi-instance self-hosting only | Stable Server Actions key                                                                                        |
 
 ## Deploying on a free tier
 
 The site is static except two small Route Handlers, the reservation Server Action and the Markdown proxy, so it fits comfortably in free tiers.
 
-- **Vercel Hobby (recommended for this demo)** — import the repository; no configuration needed. Hobby is restricted to **non-commercial, personal use**, which suits a portfolio/demo but not a live restaurant.
-- **For a real (commercial) restaurant on a free tier** — Cloudflare Workers via the OpenNext adapter (`@opennextjs/cloudflare`) or Netlify's free plan both run Next.js App Router; check each platform's current Next.js 16 support notes before switching.
-- After the first deploy set `NEXT_PUBLIC_SITE_URL` to the final domain, and optionally Upstash credentials for global rate limits.
+- **Netlify Free (used for this project)**: Add new project → Import an existing project → GitHub, pick the repository and deploy. No `netlify.toml` and no environment variables are needed. Netlify's Next.js adapter is applied automatically, Node 22 comes from `.nvmrc`, and the site reads Netlify's `URL` and `CONTEXT` for its canonical address and the preview `noindex`. Each production deploy costs 15 of the 300 monthly credits, while Deploy Previews are free, so work on branches and merge to `main` when ready. Set `SITE_INDEXING=off` to keep the demo out of search engines.
+- **Vercel Hobby**: import the repository; no configuration needed. Hobby is restricted to non-commercial, personal use.
+- **Cloudflare Workers**: possible through the OpenNext adapter (`@opennextjs/cloudflare`), but first check its support for Node.js middleware (`src/proxy.ts`) and the free plan's 3 MiB Worker limit.
+- Set `NEXT_PUBLIC_SITE_URL` only if the canonical domain differs from the platform's primary domain. Optionally add Upstash credentials for global rate limits.
 - GitHub Actions (`.github/workflows/ci.yml`) gates every push and PR on lint, format, types, unit tests, a production build, E2E + accessibility tests, a Lighthouse budget and a dependency audit; CodeQL handles security scanning.
 
 ## Search and AI discoverability
