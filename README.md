@@ -96,6 +96,6 @@ The site is static except two small Route Handlers, the reservation Server Actio
 - Server-rendered HTML for all content (the full menu and FAQ are in the HTML, not behind JavaScript).
 - Per-page titles, descriptions, canonical URLs, Open Graph/Twitter cards and generated OG images.
 - JSON-LD: `Restaurant`, `WebSite`, `Menu` (sections, priced items, diets), `FAQPage`, `BreadcrumbList` — with no invented address, phone, ratings or awards.
-- `robots.txt` with an explicit, documented group per crawler purpose — search, AI answer engines, user-triggered AI fetchers and AI training (all allowed for public pages by owner decision; `/api/` always private) — plus a `Content-Signal` line and the sitemap.
+- `robots.txt` with an explicit, documented group per crawler purpose — search, AI answer engines, user-triggered AI fetchers and AI training (all allowed for public pages by owner decision; `/api/` always private) — plus a `Content-Signal` line and the sitemap. Lighthouse's `robots-txt` audit does not know `Content-Signal` (crawlers ignore unknown lines, per RFC 9309), so `lighthouserc.json` skips that audit.
 - `llms.txt` and `llms-full.txt` (llmstxt.org convention), `menu.json`, and a Markdown rendition of every page at `/<page>.md` or by sending `Accept: text/markdown` to the page URL (advertised with `Link: rel="alternate"` headers).
 - Clean URLs, 308 redirects for legacy paths, real 404 status codes, `noindex` on previews.

@@ -10,7 +10,7 @@
         "http://localhost:3100/reservations"
       ],
       "numberOfRuns": 3,
-      "settings": { "preset": "desktop" }
+      "settings": { "preset": "desktop", "skipAudits": ["robots-txt"] }
     },
     "assert": {
       "assertions": {
